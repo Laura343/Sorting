@@ -1,0 +1,3 @@
+C:/Users/User/ACA/Sorting/build/CMakeFiles/Sorting.dir
+C:/Users/User/ACA/Sorting/build/CMakeFiles/ALL_BUILD.dir
+C:/Users/User/ACA/Sorting/build/CMakeFiles/ZERO_CHECK.dir
