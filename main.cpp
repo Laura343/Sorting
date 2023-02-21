@@ -36,7 +36,7 @@ void merge(std::vector<int>& v,int start,int middle,int end)
     {
         for(int k=middle-1;k>=i;k--)
         {
-            v[end--]=v[k];
+            v[--end]=v[k];
         }
     }
     i=0;
