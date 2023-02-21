@@ -1,17 +1,27 @@
 #include <iostream>
 #include <thread>
 #include <vector>
+#include <mutex>
 
 void merge(std::vector<int>& v,int start,int middle,int end);
 
+std::mutex mtx;
 void sort(std::vector<int>& v,int start,int end)
 {
     if((end-start)<=1)
       return;
     
-    sort(v,start,start+(end-start)/2);
-    sort(v,start+(end-start)/2,end);
-    merge(v,start,start+(end-start)/2,end);
+    std::thread t1([&](){
+        sort(v,start,start+(end-start)/2);
+    });
+    std::thread t2([&](){
+        sort(v,start+(end-start)/2,end);
+    }); 
+
+    t1.join();
+    t2.join();
+
+    merge(v,start,start+(end-start)/2,end);   
 }
 
 void merge(std::vector<int>& v,int start,int middle,int end)
@@ -36,10 +46,10 @@ void merge(std::vector<int>& v,int start,int middle,int end)
     {
         for(int k=middle-1;k>=i;k--)
         {
-            v[end--]=v[k];
+            v[--end]=v[k];
         }
     }
-    i=0;
+    i=start;
     for(int x:tmp)
     {
         v[i++]=x;
