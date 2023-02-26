@@ -1,11 +1,9 @@
 #include <iostream>
 #include <thread>
 #include <vector>
-#include <mutex>
 
 void merge(std::vector<int>& v,int start,int middle,int end);
 
-std::mutex mtx;
 void sort(std::vector<int>& v,int start,int end)
 {
     if((end-start)<=1)
